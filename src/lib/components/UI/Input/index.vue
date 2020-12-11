@@ -9,7 +9,7 @@
                 @input="$emit('input', $event)"
             />
         </div>
-        <div class="label">
+        <div class="label" v-if="label">
             {{label}}
         </div>
     </div>

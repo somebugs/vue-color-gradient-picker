@@ -14,7 +14,7 @@ export default {
 
     data() {
         return {
-            width: 0,
+            height: 0,
             mouseEvents: () => {},
         }
     },
@@ -23,68 +23,68 @@ export default {
         const { alphaMaskRef } = this.$refs;
 
         if (alphaMaskRef) {
-            this.width = alphaMaskRef.clientWidth;
+            this.height = alphaMaskRef.clientHeight;
         }
 
         this.mouseEvents = useMouseEvents(this.mouseDownHandler, this.mouseMoveHandler, this.mouseUpHandler);
     },
 
     computed: {
-        offsetLeft() {
-            return ((this.alpha * this.width) | 0) - 6;
+        offsetTop() {
+            return ((this.alpha * this.height) | 0) - 6;
         },
 
         pointerStyle() {
-            return {left: `${this.offsetLeft}px`,}
+            return {top: `${this.offsetTop}px`,}
         },
 
         style() {
             return {
-                background: `linear-gradient(to right, rgba(0, 0, 0, 0), rgb(${this.red}, ${this.green}, ${this.blue}))`,
+                background: `linear-gradient(to bottom, rgba(0, 0, 0, 0), rgb(${this.red}, ${this.green}, ${this.blue}))`,
             }
         }
     },
 
     methods: {
         mouseDownHandler(event) {
-            const elementX = event.currentTarget.getBoundingClientRect().x;
-            const startX = event.pageX;
-            const positionX = startX - elementX;
+            const elementY = event.currentTarget.getBoundingClientRect().y;
+            const startY = event.pageY;
+            const positionY = startY - elementY;
 
-            this.updateColor({ alpha: getAlpha(positionX, this.width) }, 'onStartChange');
+            this.updateColor({ alpha: getAlpha(positionY, this.height) }, 'onStartChange');
 
             return {
-                startX,
-                positionX,
+                startY,
+                positionY,
 
             };
         },
 
-        changeObjectPositions(event, { startX, positionX }) {
-            const moveX = event.pageX - startX;
-            positionX += moveX;
+        changeObjectPositions(event, { startY, positionY }) {
+            const moveY = event.pageY - startY;
+            positionY += moveY;
 
-            const alpha = getAlpha(positionX, this.width);
+            const alpha = getAlpha(positionY, this.height);
 
             return {
                 positions: {
-                    positionX,
-                    startX: event.pageX,
+                    positionY,
+                    startY: event.pageY,
                 },
                 alpha,
             };
         },
 
-        mouseMoveHandler(event, { startX, positionX }) {
-            const { positions, alpha } = this.changeObjectPositions(event, { startX, positionX });
+        mouseMoveHandler(event, { startY, positionY }) {
+            const { positions, alpha } = this.changeObjectPositions(event, { startY, positionY });
 
             this.updateColor({ alpha }, 'onChange');
 
             return positions;
         },
 
-        mouseUpHandler(event, { startX, positionX, }) {
-            const { positions, alpha } = this.changeObjectPositions(event, { startX, positionX });
+        mouseUpHandler(event, { startY, positionY, }) {
+            const { positions, alpha } = this.changeObjectPositions(event, { startY, positionY });
 
             this.updateColor({ alpha }, 'onEndChange');
 

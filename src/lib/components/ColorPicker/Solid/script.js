@@ -60,6 +60,9 @@ export default {
         this.colorHue = hue;
         this.colorSaturation = saturation;
         this.colorValue = value;
+        this.updateColor({
+            ...this.$props
+        });
     },
 
     computed: {

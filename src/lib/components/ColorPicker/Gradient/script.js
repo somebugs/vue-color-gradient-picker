@@ -70,6 +70,12 @@ export default {
         }
     },
 
+    watch: {
+        type(type) {
+            this.changeGradientControl({type})
+        }
+    },
+
     mounted() {
         const { hue, saturation, value } = rgbToHsv({ red: this.colorRed, green: this.colorGreen, blue: this.colorBlue });
 
@@ -145,7 +151,7 @@ export default {
             })
         },
 
-        updateColor({ red, green, blue, alpha, hue, saturation, value }, actionName = 'onChange') {
+        updateColor({ red, green, blue, alpha, hue, saturation, value, degree }, actionName = 'onChange') {
             red = getRightValue(red, this.colorRed);
             green = getRightValue(green, this.colorGreen);
             blue = getRightValue(blue, this.colorBlue);
@@ -172,6 +178,9 @@ export default {
             this.colorSaturation = saturation;
             this.colorValue = value;
             this.gradientPoints = localGradientPoints;
+            if(typeof degree !== 'undefined') {
+                this.gradientDegree = degree
+            }
 
             const action = this.actions[actionName];
 

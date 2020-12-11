@@ -1,10 +1,10 @@
 <template>
     <fragment>
-        <GradientControls
+        <!-- <GradientControls
             :type="gradientType"
             :degree="gradientDegree"
             :changeGradientControl="changeGradientControl"
-        />
+        /> -->
 
         <Area
             :red="colorRed"

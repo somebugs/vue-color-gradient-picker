@@ -1,15 +1,14 @@
-* {
-    box-sizing: border-box;
-}
 
 .ui-color-picker {
-    margin: 8px;
     background-color: #FFFFFF;
-    display: flex;
-    flex-direction: column;
-    width: 280px;
+    padding: 14px;
     user-select: none;
-
+    border: 1px solid #e6e6e6;
+    border-radius: 4px;
+    box-sizing: border-box;
+    * {
+        box-sizing: border-box;
+    }
     .gradient-controls {
         display: flex;
         flex-direction: row;
@@ -111,12 +110,39 @@
             }
         }
     }
+    .gradient-control {
+        display: flex;
+        margin-top: 14px;
+        .input-field {
+            margin-left: 14px;
+            width: 42px;
+            height: 18px;
+            .input-container .input {
+                text-align: left;
+            }   
+        }
+    }
+    .gradient-slider {
+        flex: 1;
+        width: 100%;
+        height: 14px;
+        position: relative;
+        cursor: pointer;
+        border-radius: 4px;
+        padding: 0 7px;
+        top: 4px;
 
+        .gradient-slider-container {
+            height: 100%;
+            width: 100%;
+            position: relative;
+        }
+    }
     .picker-area {
         display: flex;
-        flex-direction: column;
-        padding: 0 16px;
-
+        width: 100%;
+        height: 170px;
+        margin: 14px 0;
         &.gradient-tab {
             .picking-area {
                 margin-bottom: 10px;
@@ -125,10 +151,9 @@
 
         .picking-area {
             width: 100%;
-            height: 160px;
-            margin-bottom: 16px;
+            height: 170px;
             position: relative;
-            border-radius: 8px;
+            border-radius: 4px;
 
             &:hover {
                 cursor: default;
@@ -138,62 +163,58 @@
                 height: 100%;
                 width: 100%;
                 background: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 100%);
-                border-radius: 3px;
+                border-radius: 4px;
 
                 .picking-area-overlay2 {
                     height: 100%;
                     width: 100%;
                     background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, black 100%);
-                    border-radius: 8px;
+                    border-radius: 4px;
                 }
             }
         }
 
         .preview {
             display: flex;
-            flex-direction: row;
-            margin-bottom: 16px;
-
             .preview-box {
+                display: none;
                 box-sizing: border-box;
                 height: 36px;
                 width: 36px;
-                border-radius: 8px;
+                border-radius: 4px;
                 border: 1px solid #EBEDF5;
             }
 
             .color-hue-alpha {
                 display: flex;
-                flex-direction: column;
                 flex: 1;
-                margin-left: 6px;
-
                 .hue {
-                    width: 100%;
+                    margin: 0 14px;
+                    width: 14px;
+                    height: 100%;
                     position: relative;
-                    border-radius: 10px;
-                    margin-bottom: 8px;
-                    padding: 0 7px;
+                    border-radius: 4px;
+                    padding: 7px 0;
                     background-color: red;
                     cursor: pointer;
 
                     .hue-area {
                         position: relative;
-                        height: 14px;
-                        background: -webkit-linear-gradient(left, #ff0000, #ff0080, #ff00ff, #8000ff, #0000ff, #0080ff, #00ffff, #00ff80, #00ff00, #80ff00, #ffff00, #ff8000, #ff0000);
-                        background: -o-linear-gradient(left, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000);
-                        background: -ms-linear-gradient(left, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000);
-                        background: -moz-linear-gradient(left, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000);
-                        background: linear-gradient(to right, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000);
+                        height: 100%;
+                        background: -webkit-linear-gradient(top, #ff0000, #ff0080, #ff00ff, #8000ff, #0000ff, #0080ff, #00ffff, #00ff80, #00ff00, #80ff00, #ffff00, #ff8000, #ff0000);
+                        background: -o-linear-gradient(top, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000);
+                        background: -ms-linear-gradient(top, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000);
+                        background: -moz-linear-gradient(top, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000);
+                        background: linear-gradient(to bottom, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000);
                     }
                 }
 
                 .alpha {
                     position: relative;
-                    width: 100%;
+                    width: 14px;
                     overflow: hidden;
-                    border-radius: 10px;
-                    height: 14px;
+                    border-radius: 4px;
+                    height: 100%;
                     cursor: pointer;
 
                     .gradient {
@@ -210,8 +231,8 @@
                         background: url("assets/images/alpha-background.svg");
                         background-size: auto;
                         background-position: 50% 50%;
-                        border-radius: 10px;
-                        padding: 0 7px;
+                        border-radius: 4px;
+                        padding: 7px 0;
 
                         .alpha-mask {
                             width: 100%;
@@ -222,58 +243,42 @@
                 }
             }
         }
+    }
+    .picker-pointer {
+        position: absolute;
+        height: 14px;
+        width: 14px;
+        border: 2px solid #FFFFFF;
+        background: transparent;
+        border-radius: 50%;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.3);
 
-        .gradient {
-            width: 100%;
-            height: 14px;
-            position: relative;
-            cursor: pointer;
-            border-radius: 10px;
-            margin-bottom: 8px;
-            padding: 0 7px;
-
-            .gradient-slider-container {
-                height: 100%;
-                width: 100%;
-                position: relative;
-            }
-        }
-
-        .picker-pointer {
+        .child-point {
             position: absolute;
-            top: 1px;
-            height: 12px;
-            width: 12px;
-            border: 1px solid #FFFFFF;
-            background: transparent;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 3px;
+            width: 3px;
+            background: #FFFFFF;
             border-radius: 50%;
-            box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.33s;
 
-            .child-point {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                height: 3px;
-                width: 3px;
-                background: #FFFFFF;
-                border-radius: 50%;
-                opacity: 0;
-                transition: opacity 0.33s;
-
-                &.active {
-                    opacity: 1;
-                }
+            &.active {
+                opacity: 1;
             }
         }
     }
-
     .color-preview-area {
-        margin-bottom: 8px;
-        padding: 0 16px;
-
+        display: flex;
+        width: 100%;
+        .v-select {
+            width: 56px;
+            margin-right: 14px;
+        }
         .input-group {
-            width: 100%;
+            flex: 1;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -284,11 +289,17 @@
         }
 
         .hex {
-            width: 65px;
+            .input {
+                text-align: left;
+                text-transform: uppercase;
+            }
         }
 
         .rgb {
-            width: 40px;
+            width: 24px;
+            &.alpha-input {
+                width: 35px;
+            }
         }
     }
 
@@ -412,6 +423,53 @@
                         border-radius: 50%;
                     }
                 }
+            }
+        }
+    }
+
+    .v-select {
+        width: 113px;
+
+        &.vs--open {
+            .vs__dropdown-toggle .vs__actions {
+                transform: rotate(-90deg);
+            }
+        }
+        .vs__dropdown-menu {
+            min-width: auto;
+            border: 0;
+            .vs__dropdown-option {
+                font-size: 12px;
+            }
+        }
+        .vs__dropdown-toggle{
+            height: 18px;
+            border: 0;
+            border-radius: 0;
+            padding: 0 1px;
+            text-align: center;
+            .vs__actions {
+                padding: 0;
+                width: 18px;
+                height: 18px;
+                background-image: url(../lib/assets/images/arrow.svg);
+                background-size: 16px 16px;
+                background-repeat: no-repeat;
+                background-position: center center;
+                transform: rotate(90deg);
+                .vs__open-indicator {
+                    display: none;
+                }
+            }
+            .vs__selected {
+                margin: 0;
+                border: 0;
+                padding: 0;
+                line-height: 18px;
+                font-size: 12px;
+            }
+            input {
+                display: none;
             }
         }
     }

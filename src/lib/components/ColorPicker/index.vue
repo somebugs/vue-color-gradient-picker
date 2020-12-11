@@ -1,5 +1,12 @@
 <template>
     <div class="ui-color-picker">
+        <VSelect 
+            :options="colorOptions" 
+            v-model="colorMode" 
+            :clearable="false" 
+            :searchable="false"
+            @input="onColorTypeChange"
+        />
         <Gradient
             v-if="isGradient"
             :points="gradient.points"

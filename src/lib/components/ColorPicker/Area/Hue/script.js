@@ -13,7 +13,7 @@ export default {
 
     data() {
         return {
-            width: 0,
+            height: 0,
             mouseEvents: () => {},
         }
     },
@@ -22,67 +22,67 @@ export default {
         const { hueRef } = this.$refs;
 
         if (hueRef) {
-            this.width = hueRef.clientWidth;
+            this.height = hueRef.clientHeight;
         }
 
         this.mouseEvents = useMouseEvents(this.mouseDownHandler, this.mouseMoveHandler, this.mouseUpHandler);
     },
 
     computed: {
-        offsetLeft() {
-            return ((this.hue * this.width / 360) | 0) - 6;
+        offsetTop() {
+            return ((this.hue * this.height / 360) | 0) - 6;
         },
 
         pointerStyle() {
             return {
-                left: `${this.offsetLeft}px`,
+                top: `${this.offsetTop}px`,
             }
         },
     },
 
     methods: {
         mouseDownHandler(event) {
-            const elementX = event.currentTarget.getBoundingClientRect().x;
-            const startX = event.pageX;
-            const positionX = startX - elementX;
+            const elementY = event.currentTarget.getBoundingClientRect().y;
+            const startY = event.pageY;
+            const positionY = startY - elementY;
 
-            const color = getHue(positionX, this.width, this.saturation, this.value);
+            const color = getHue(positionY, this.height, this.saturation, this.value);
 
             this.updateColor(color, 'onStartChange');
 
             return {
-                startX,
-                positionX,
+                startY,
+                positionY,
             };
         },
 
-        changeObjectPositions(event, { startX, positionX }) {
-            const moveX = event.pageX - startX;
-            positionX += moveX;
+        changeObjectPositions(event, { startY, positionY }) {
+            const moveY = event.pageY - startY;
+            positionY += moveY;
 
             // update value and saturation
-            const offsetX = positionX > this.width ? this.width : positionX <= 0 ? 0 : positionX;
-            const color = getHue(offsetX, this.width, this.saturation, this.value);
+            const offsetY = positionY > this.height ? this.height : positionY <= 0 ? 0 : positionY;
+            const color = getHue(offsetY, this.height, this.saturation, this.value);
 
             return {
                 positions: {
-                    positionX,
-                    startX: event.pageX,
+                    positionY,
+                    startY: event.pageY,
                 },
                 color,
             };
         },
 
-        mouseMoveHandler(event, { startX, positionX }) {
-            const { positions, color } = this.changeObjectPositions(event, { startX, positionX });
+        mouseMoveHandler(event, { startY, positionY }) {
+            const { positions, color } = this.changeObjectPositions(event, { startY, positionY });
 
             this.updateColor(color, 'onChange');
 
             return positions;
         },
 
-        mouseUpHandler(event, { startX, positionX, }) {
-            const { positions, color } = this.changeObjectPositions(event, { startX, positionX });
+        mouseUpHandler(event, { startY, positionY, }) {
+            const { positions, color } = this.changeObjectPositions(event, { startY, positionY });
 
             this.updateColor(color, 'onEndChange');
 

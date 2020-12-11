@@ -1,3 +1,4 @@
+import VSelect from 'vue-select'
 import Hex from './Hex';
 import RGB from './RGB';
 
@@ -14,6 +15,14 @@ export default {
 
     components: {
         Hex,
-        RGB
+        RGB,
+        VSelect
+    },
+
+    data() {
+        return {
+            colorMode: 'Hex',
+            colorOptions: ['Hex', 'RGB']
+        }
     }
 };

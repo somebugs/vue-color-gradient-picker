@@ -1,9 +1,10 @@
 .input-field {
     display: flex;
-    flex-shrink: 0;
     align-items: center;
     flex-direction: column;
-
+    & + .input-field {
+        margin-left: 14px;
+    }
     .label {
         font-size: 12px;
         line-height: 15px;
@@ -18,19 +19,18 @@
         align-items: center;
         position: relative;
         width: 100%;
-        border-radius: 6px;
-        color: #28314d;
+        color: #333;
 
         .input {
             width: 100%;
             outline: 0;
-            color: #1F2667;
-            border-radius: inherit;
-            border: 1px solid #bbbfc5;
-            height: 24px;
+            text-align: center;
+            color: #333;
+            border: 0;
+            border-bottom: 1px solid #333;
+            height: 18px;
             font-size: 12px;
-            font-weight: 600;
-            padding: 0 6px;
+            padding: 0 1px;
         }
     }
 }

@@ -1,6 +1,6 @@
 <template>
-  <div id="app" :style="{ display: 'flex', textAlign: 'center' }">
-    <div>
+  <div id="app">
+    <div class="picker-dialog">
       <ColorPicker
           :color="color"
           :onStartChange="color => onChange(color, 'start')"
@@ -8,14 +8,17 @@
           :onEndChange="color => onChange(color, 'end')"
       />
     </div>
-    <div>
+
+    <div class="demo" :style="style"></div>
+    {{color}}
+    <!-- <div>
       <ColorPicker
           :is-gradient="true"
           :onStartChange="color => onChange(color, 'start')"
           :onChange="color => onChange(color, 'change')"
           :onEndChange="color => onChange(color, 'end')"
       />
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -39,14 +42,32 @@ export default {
     };
   },
 
-  methods: {
-    onChange(attrs, name) {
-      this.color = { ...attrs };
+  computed: {
+    style() {
+      return `background: ${this.color.style}`
+    }
+  },
 
-      console.log(attrs, name);
+  methods: {
+    onChange(attrs) {
+      this.color = { ...attrs };
     }
   }
 }
 </script>
 
-<style src="@/lib/index.scss" lang="scss" />
+<style lang="scss">
+body {
+  margin: 0;
+}
+.picker-dialog {
+  width: 254px;
+  box-sizing: border-box;
+}
+.demo {
+  margin: 20px;
+  border: 1px solid #e6e6e6;
+  width: 100px;
+  height: 100px;
+}
+</style>

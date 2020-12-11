@@ -3,6 +3,7 @@ import Preview from "./Preview";
 import Hue from "./Hue";
 import Alpha from "./Alpha";
 import GradientPoints from "./GradientPoints";
+import Input from "../../UI/Input";
 
 export default {
     name: "Area",
@@ -33,6 +34,35 @@ export default {
         GradientPoints,
         Preview,
         Hue,
-        Alpha
+        Alpha,
+        Input
     },
+
+    data() {
+        return {
+            degreeValue: this.degree + '°'
+        }
+    },
+
+    methods: {
+        onFocus() {
+            this.degreeValue = String(this.degreeValue).replace(/°/, '')
+        },
+
+        onBlur() {
+            this.updateColor({
+                degree: this.degreeValue
+            });
+            this.degreeValue += '°'
+        },
+
+        changeDegree(event) {
+            const value = +event.target.value;
+            if (Number.isNaN(value) || value < 0 || value > 360) {
+                this.degreeValue = 0
+                return;
+            }
+            this.degreeValue = value;
+        }
+    }
 }
