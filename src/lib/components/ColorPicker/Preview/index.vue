@@ -1,7 +1,13 @@
 <template>
     <div class="color-preview-area">
-        <v-select :options="colorOptions" v-model="colorMode" 
-        :clearable="false" :searchable="false"></v-select>
+        <el-select v-model="colorMode" size="mini">
+            <el-option
+                v-for="item in colorOptions"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+            </el-option>
+        </el-select>
         <div class="input-group">
             <Hex
                 v-if="colorMode === 'Hex'"

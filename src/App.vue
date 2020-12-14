@@ -8,17 +8,8 @@
           :onEndChange="color => onChange(color, 'end')"
       />
     </div>
-
+    <h2>demo</h2>
     <div class="demo" :style="style"></div>
-    {{color}}
-    <!-- <div>
-      <ColorPicker
-          :is-gradient="true"
-          :onStartChange="color => onChange(color, 'start')"
-          :onChange="color => onChange(color, 'change')"
-          :onEndChange="color => onChange(color, 'end')"
-      />
-    </div> -->
   </div>
 </template>
 

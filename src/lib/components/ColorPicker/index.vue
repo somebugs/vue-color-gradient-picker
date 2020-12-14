@@ -1,12 +1,17 @@
 <template>
     <div class="ui-color-picker">
-        <VSelect 
-            :options="colorOptions" 
+        <el-select 
             v-model="colorMode" 
-            :clearable="false" 
-            :searchable="false"
-            @input="onColorTypeChange"
-        />
+            size="mini"
+            @change="onColorTypeChange"
+        >
+            <el-option
+            v-for="item in colorOptions"
+            :key="item.value"
+            :label="t(item.label)"
+            :value="item.value">
+            </el-option>
+        </el-select>
         <Gradient
             v-if="isGradient"
             :points="gradient.points"

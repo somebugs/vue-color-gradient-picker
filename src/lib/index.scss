@@ -273,7 +273,7 @@
     .color-preview-area {
         display: flex;
         width: 100%;
-        .v-select {
+        .el-select {
             width: 56px;
             margin-right: 14px;
         }
@@ -427,50 +427,16 @@
         }
     }
 
-    .v-select {
-        width: 113px;
-
-        &.vs--open {
-            .vs__dropdown-toggle .vs__actions {
-                transform: rotate(-90deg);
-            }
-        }
-        .vs__dropdown-menu {
-            min-width: auto;
+    .el-select {
+        input {
             border: 0;
-            .vs__dropdown-option {
-                font-size: 12px;
-            }
-        }
-        .vs__dropdown-toggle{
+            padding: 0;
             height: 18px;
-            border: 0;
-            border-radius: 0;
-            padding: 0 1px;
-            text-align: center;
-            .vs__actions {
-                padding: 0;
-                width: 18px;
-                height: 18px;
-                background-image: url(../lib/assets/images/arrow.svg);
-                background-size: 16px 16px;
-                background-repeat: no-repeat;
-                background-position: center center;
-                transform: rotate(90deg);
-                .vs__open-indicator {
-                    display: none;
-                }
-            }
-            .vs__selected {
-                margin: 0;
-                border: 0;
-                padding: 0;
-                line-height: 18px;
-                font-size: 12px;
-            }
-            input {
-                display: none;
-            }
+            line-height: 18px;
+        }
+        .el-select__caret {
+            color: #333;
+            line-height: 18px;
         }
     }
 }

@@ -1,11 +1,12 @@
 import Vue from 'vue';
 import { Plugin } from "vue-fragment";
-import VSelect from 'vue-select'
-
+import { Select, Option } from 'element-ui';
 import Solid from './Solid';
 import Gradient from './Gradient';
 
 Vue.use(Plugin);
+Vue.component(Select.name, Select)
+Vue.component(Option.name, Option)
 
 export default {
     name: "ColorPicker",
@@ -40,19 +41,17 @@ export default {
     components: {
         Solid,
         Gradient,
-        VSelect
-    },
-
-    computed: {
-        isGradient() {
-            return this.colorMode !== 'Solid color'
-        }
     },
 
     data() {
         return {
-            colorMode: 'Linear gradient',
-            colorOptions: ['Solid color', 'Linear gradient', 'Radial gradient'],
+            isGradient: false,
+            colorMode: 'solid',
+            colorOptions: [
+                {value: 'solid', label: 'Solid color'},
+                {value: 'linear', label: 'Linear gradient'},
+                {value: 'radial', label: 'Radial gradient'},
+            ],
             gradient: {
                 type: 'linear',
                 degree: 0,
@@ -77,20 +76,16 @@ export default {
     },
 
     methods: {
-        onColorTypeChange(type) {
-            switch (type) {
-                case 'Linear gradient':
-                    type = 'linear'
-                    break;
-                case 'Radial gradient':
-                    type = 'radial'
-                    break;
-            
-                default:
-                    type = ''
-                    break;
+        t(text) {
+            return this.$t ? this.$t(text) : text
+        },
+        async onColorTypeChange(type) {
+            this.isGradient = false
+            await this.$nextTick();
+            if(type === 'solid') {
+                return this.isGradient = false
             }
-            if(!type) return
+            this.isGradient = true
             this.gradient = {
                 ...this.gradient,
                 type,
